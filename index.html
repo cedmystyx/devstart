@@ -2,14 +2,27 @@
 <html>
   <head>
     <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
+    <style>
+      #playBtn {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        padding: 10px 20px;
+        font-size: 18px;
+        z-index: 10;
+        cursor: pointer;
+      }
+    </style>
   </head>
   <body>
-    <!-- Ta vidéo locale (bien nommée et dans le bon dossier) -->
-    <video id="videoTexture" src="./peppa/peppa.mp4" autoplay loop muted playsinline style="display:none"></video>
+    <button id="playBtn">▶️ Lancer la vidéo</button>
+
+    <!-- Vidéo locale, sans muted -->
+    <video id="videoTexture" src="./peppa/peppa.mp4" loop playsinline style="display:none"></video>
 
     <a-scene shadow="type:pcfsoft">
 
-      <!-- Lumières (comme dans ton code) -->
+      <!-- Lumières -->
       <a-light type="ambient" color="#a0c8ff" intensity="0.2"></a-light>
       <a-light 
         type="directional" 
@@ -61,10 +74,26 @@
         shadow="receive: true">
       </a-entity>
 
-      <!-- Plan avec la vidéo en texture -->
-      <a-plane position="28.54984 11.27198 -1.54843" rotation="0 -90 0" width="4" height="2.25" material="shader: flat; src: #videoTexture" shadow="" scale="10 10 10">
+      <!-- Plan avec la vidéo -->
+      <a-plane position="28.54984 11.27198 -1.54843" rotation="0 -90 0" width="4" height="2.25" 
+               material="shader: flat; src: #videoTexture" 
+               shadow="" scale="10 10 10">
       </a-plane>
 
     </a-scene>
+
+    <script>
+      const video = document.querySelector('#videoTexture');
+      const playBtn = document.querySelector('#playBtn');
+
+      playBtn.addEventListener('click', () => {
+        video.play().then(() => {
+          console.log('Vidéo lancée avec son');
+          playBtn.style.display = 'none'; // cache le bouton
+        }).catch(err => {
+          console.error('Erreur lecture vidéo:', err);
+        });
+      });
+    </script>
   </body>
 </html>
