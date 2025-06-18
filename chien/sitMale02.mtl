@@ -1,44 +1,225 @@
-#
-# (C) Copyrights Reallusion 2013 
-# http://www.reallusion.com/
-#
-# Distributed under Creative Commons Attribution 3.0 United States (CC BY 3.0) license
-# 
-newmtl 08-Default
-Ns 1
-Ka 0.000000 0.000000 0.000000
-Kd 0.512000 0.512000 0.512000
-Ks 0.100000 0.100000 0.100000
-Ni 1.000000
-d 1.000000
-illum 2
-map_Kd MCasual04_80.jpg
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
+    <style>
+      #playBtn {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        padding: 10px 20px;
+        font-size: 18px;
+        z-index: 10;
+        cursor: pointer;
+      }
+      #popcornBtn {
+        position: absolute;
+        top: 60px;
+        left: 20px;
+        padding: 10px 20px;
+        font-size: 18px;
+        z-index: 10;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="playBtn">▶️ Lancer la vidéo</button>
 
-newmtl Default
-Ns 1
-Ka 0.000000 0.000000 0.000000
-Kd 0.409600 0.000000 0.000000
-Ks 0.100000 0.100000 0.100000
-Ni 1.000000
-d 1.000000
-illum 2
+    <video id="videoTexture" src="./peppa/peppa.mp4" crossorigin="anonymous" playsinline style="display: none;"></video>
 
-newmtl hair
-Ns 41.176471
-Ka 0.000000 0.000000 0.000000
-Kd 0.512000 0.512000 0.512000
-Ks 0.500000 0.500000 0.500000
-Ni 1.000000
-d 1.000000
-illum 2
-map_Kd MCasual04_79.jpg
+    <!-- Ajout audio pop-corn -->
+    <audio id="popcornSound" src="./source/bruitpop.mp3" preload="auto"></audio>
 
-newmtl hrad
-Ns 1
-Ka 0.000000 0.000000 0.000000
-Kd 0.512000 0.512000 0.512000
-Ks 0.100000 0.100000 0.100000
-Ni 1.000000
-d 1.000000
-illum 2
-map_Kd MCasual04_78.jpg
+    <a-scene shadow="type:pcfsoft">
+
+      <!-- Lumières -->
+      <a-light id="ambLight" type="ambient" color="#a0c8ff" intensity="0.8"></a-light>
+      <a-light id="dirLight" type="directional" color="#ffffff" intensity="1" position="-0.9 5 4.1" rotation="-45 0 0" castShadow="true"></a-light>
+      <a-light id="spotLight" type="spot" color="#ffdca0" intensity="0.8" position="-0.9 4 4.1" rotation="-90 0 0" angle="40" penumbra="0.8" distance="10" decay="2" castShadow="true"></a-light>
+      <a-light id="flashLight" type="spot" color="#ffffff" intensity="0" position="-5.27845 34.61113 64.29208" rotation="-15 179 0" angle="45" penumbra="1" distance="120" decay="2" castShadow="true"></a-light>
+      
+      <!-- Caméra -->
+      <a-entity camera look-controls position="0 1.6 5" rotation="0 -90 0"></a-entity>
+
+      <!-- Ciel -->
+      <a-sky color="#000000"></a-sky>
+
+      <!-- Salle -->
+      <a-entity id="salle" obj-model="mtl: ./cedmystyx/unaatitled.mtl; obj: ./cedmystyx/unaatitled.obj" position="-0.9397 -2.10223 4.14092" rotation="0 90.049 0" shadow="receive: true; cast: true"></a-entity>
+
+      <!-- Plan blanc derrière vidéo -->
+      <a-plane id="whiteScreen" position="-3.91995 11.27198 -23.33286" rotation="0 0.1398 0" width="4" height="2.25" color="#FFFFFF" material="shader: flat" shadow scale="10.58765 10.97542 18.33661"></a-plane>
+      
+      <!-- Écran vidéo (devant le plan blanc) -->
+      <a-plane id="screen"
+        position="-3.91995 11.27198 -23.25"
+        rotation="0 0.1398 0"
+        width="4"
+        height="2.25"
+        visible="true"
+        material="shader: flat; src: #videoTexture; transparent: true; opacity: 0"
+        shadow
+        scale="10.58765 10.97542 18.33661">
+      </a-plane>
+
+      <!-- Cube blanc pour voir éclairage projecteur -->
+      <a-box position="-4.58569 34.51662 65.61611" depth="0.2" height="1" width="1" color="#FFFFFF" shadow=""></a-box>
+
+      <!-- Pop-corn (cube stylisé) -->
+      <a-entity id="popcorn" obj-model="mtl: ./source/pop/pop.mtl; obj: ./source/pop/pop.obj" position="-2.22243 1.66116 4.20469" scale="0.07 0.07 0.07" shadow="receive: false" class="clickable" cursor-listener="" rotation="-80.22841526319353 24.919080425829762 90"></a-entity>
+
+      <!-- Texte -->
+      <a-text value="Willigsecker Miot Cédric\n16 ans en seconde pro TNE"
+        position="23.39771 5.28073 -7.51168"
+        rotation="0 -90 0"
+        align="center"
+        width="6"
+        color="#FFD700"
+        wrap-count="30"
+        font="https://cdn.aframe.io/fonts/mozillavr.fnt"
+        scale="4 4 4">
+      </a-text>
+
+      <!-- Personnages assis -->
+
+      <!-- Homme -->
+      <a-entity obj-model="obj: homme/boySitting.obj; mtl: homme/boySitting.mtl"
+                position="2 0 -5"
+                scale="0.5 0.5 0.5"
+                rotation="0 180 0"
+                shadow="cast: true; receive: true"
+                class="clickable"></a-entity>
+
+      <!-- Garçon -->
+      <a-entity obj-model="obj: garçon/sitMale01.obj; mtl: garçon/sitMale01.mtl"
+                position="3 0 -6"
+                scale="0.5 0.5 0.5"
+                rotation="0 160 0"
+                shadow="cast: true; receive: true"
+                class="clickable"></a-entity>
+
+      <!-- Fille -->
+      <a-entity obj-model="obj: fille/sitFemale03.obj; mtl: fille/sitFemale03.mtl"
+                position="1.5 0 -5.5"
+                scale="0.5 0.5 0.5"
+                rotation="0 190 0"
+                shadow="cast: true; receive: true"
+                class="clickable"></a-entity>
+
+      <!-- Femme -->
+      <a-entity obj-model="obj: femme/girlSittingTable.obj; mtl: femme/girlSittingTable.mtl"
+                position="2.5 0 -7"
+                scale="0.5 0.5 0.5"
+                rotation="0 150 0"
+                shadow="cast: true; receive: true"
+                class="clickable"></a-entity>
+
+      <!-- "Chien" = homme assis -->
+      <a-entity obj-model="obj: chien/sitMale02.obj; mtl: chien/sitMale02.mtl"
+                position="-3 0 -10"
+                scale="0.5 0.5 0.5"
+                rotation="0 150 0"
+                shadow="cast: true; receive: true"
+                class="clickable"></a-entity>
+
+    </a-scene>
+
+    <script>
+      const video = document.querySelector('#videoTexture');
+      const playBtn = document.querySelector('#playBtn');
+      const screen = document.querySelector('#screen');
+
+      const ambLight = document.querySelector('#ambLight');
+      const dirLight = document.querySelector('#dirLight');
+      const spotLight = document.querySelector('#spotLight');
+      const flashLight = document.querySelector('#flashLight');
+
+      const popcorn = document.querySelector('#popcorn');
+      const popcornSound = document.querySelector('#popcornSound');
+
+      let isPlaying = false;
+
+      function animateLight(light, from, to, duration = 1000) {
+        const step = (to - from) / (duration / 10);
+        let current = from;
+        return new Promise((resolve) => {
+          const interval = setInterval(() => {
+            current += step;
+            if ((step < 0 && current <= to) || (step > 0 && current >= to)) {
+              light.setAttribute('intensity', to.toFixed(2));
+              clearInterval(interval);
+              resolve();
+            } else {
+              light.setAttribute('intensity', current.toFixed(2));
+            }
+          }, 10);
+        });
+      }
+
+      function fadeInScreen(duration = 1000) {
+        return new Promise((resolve) => {
+          let opacity = 0;
+          const step = 1 / (duration / 10);
+          const interval = setInterval(() => {
+            opacity += step;
+            if (opacity >= 1) {
+              screen.setAttribute('material', 'opacity', 1);
+              clearInterval(interval);
+              resolve();
+            } else {
+              screen.setAttribute('material', 'opacity', opacity.toFixed(2));
+            }
+          }, 10);
+        });
+      }
+
+      playBtn.addEventListener('click', async () => {
+        if (!isPlaying) {
+          try {
+            await video.play();
+            isPlaying = true;
+            playBtn.textContent = "⏹️ Stopper la vidéo";
+
+            // Fade in écran vidéo
+            await fadeInScreen();
+
+            // Baisse lumières principales
+            await Promise.all([
+              animateLight(ambLight, 0.8, 0.1),
+              animateLight(dirLight, 1, 0.2),
+              animateLight(spotLight, 0.8, 0.1)
+            ]);
+
+            // Allume projecteur progressivement jusqu’à 6
+            await animateLight(flashLight, 0, 6);
+
+          } catch (err) {
+            console.error("Erreur lecture vidéo :", err);
+          }
+        } else {
+          video.pause();
+          isPlaying = false;
+          playBtn.textContent = "▶️ Lancer la vidéo";
+
+          // Écran vidéo disparaît instantanément
+          screen.setAttribute('material', 'opacity', 0);
+
+          // Lumières principales remontent
+          animateLight(ambLight, 0.1, 0.8);
+          animateLight(dirLight, 0.2, 1);
+          animateLight(spotLight, 0.1, 0.8);
+
+          // Projecteur s’éteint instantanément
+          flashLight.setAttribute('intensity', 0);
+        }
+      });
+
+      // Événement click sur pop-corn pour jouer le son
+      popcorn.addEventListener('click', () => {
+        popcornSound.currentTime = 0;
+        popcornSound.play();
+      });
+    </script>
+  </body>
+</html>
