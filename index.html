@@ -27,7 +27,7 @@
       <a-light id="spotLight" type="spot" color="#ffdca0" intensity="0.8" position="-0.9 4 4.1" rotation="-90 0 0" angle="40" penumbra="0.8" distance="10" decay="2" castShadow="true"></a-light>
 
       <!-- Projecteur blanc (spot) qui éclaire l'écran -->
-      <a-light id="flashLight" type="spot" color="#ffffff" intensity="1.50" position="-5.27845 34.61113 64.29208" rotation="-90 0 0" angle="30" penumbra="1" distance="15" decay="1" castshadow="true"></a-light>
+      <a-light id="flashLight" type="spot" color="#ffffff" intensity="0" position="-5.27845 34.61113 64.29208" rotation="-90 0 0" angle="30" penumbra="1" distance="15" decay="1" castshadow="true"></a-light>
       
       <!-- Caméra -->
       <a-entity camera look-controls position="0 1.6 5" rotation="0 -90 0"></a-entity>
@@ -133,8 +133,8 @@
               animateLight(spotLight, 0.8, 0.1)
             ]);
 
-            // Allume projecteur progressivement
-            await animateLight(flashLight, 0, 1.5);
+            // Allume projecteur progressivement jusqu’à 6
+            await animateLight(flashLight, 0, 6);
 
           } catch (err) {
             console.error("Erreur lecture vidéo :", err);
