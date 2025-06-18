@@ -1,0 +1,16 @@
+# Exported from 3D Builder
+
+newmtl Material.003_0
+Kd 0.800466 0.559589 0.064582
+
+newmtl Material.001_0
+Kd 0.791303 0.644491 0.064804
+
+newmtl red_strip_0
+Kd 0.800671 0.092609 0.024393
+
+newmtl white_strip_0
+Kd 0.993771 1.000000 0.724841
+
+newmtl Material.002_0
+Kd 0.801476 0.568111 0.073850
