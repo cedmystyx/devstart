@@ -12,12 +12,24 @@
         z-index: 10;
         cursor: pointer;
       }
+      #popcornBtn {
+        position: absolute;
+        top: 60px;
+        left: 20px;
+        padding: 10px 20px;
+        font-size: 18px;
+        z-index: 10;
+        cursor: pointer;
+      }
     </style>
   </head>
   <body>
     <button id="playBtn">▶️ Lancer la vidéo</button>
 
     <video id="videoTexture" src="./peppa/peppa.mp4" crossorigin="anonymous" playsinline style="display: none;"></video>
+
+    <!-- Ajout audio pop-corn -->
+    <audio id="popcornSound" src="./popcorn-crunch.mp3" preload="auto"></audio>
 
     <a-scene shadow="type:pcfsoft">
 
@@ -27,15 +39,7 @@
       <a-light id="spotLight" type="spot" color="#ffdca0" intensity="0.8" position="-0.9 4 4.1" rotation="-90 0 0" angle="40" penumbra="0.8" distance="10" decay="2" castShadow="true"></a-light>
 
       <!-- Projecteur blanc (spot) qui éclaire l'écran -->
-      <a-light id="flashLight" type="spot" color="#ffffff" intensity="0"
-  position="-5.27845 34.61113 64.29208"
-  rotation="-15 179 0"
-  angle="45"
-  penumbra="1"
-  distance="120"
-  decay="2"
-  castshadow="true">
-</a-light>
+      <a-light id="flashLight" type="spot" color="#ffffff" intensity="0" position="-5.27845 34.61113 64.29208" rotation="-15 179 0" angle="45" penumbra="1" distance="120" decay="2" castshadow="true"></a-light>
       
       <!-- Caméra -->
       <a-entity camera look-controls position="0 1.6 5" rotation="0 -90 0"></a-entity>
@@ -64,6 +68,13 @@
       <!-- Cube blanc pour voir éclairage projecteur -->
       <a-box position="-4.58569 34.51662 65.61611" depth="0.2" height="1" width="1" color="#FFFFFF" shadow=""></a-box>
 
+      <!-- Pop-corn (cube stylisé) -->
+      <a-box id="popcorn" position="0 1 -3" depth="0.3" height="0.4" width="0.4" color="#f5d76e" 
+        class="clickable" 
+        shadow
+        cursor-listener>
+      </a-box>
+
       <!-- Texte -->
       <a-text value="Willigsecker Miot Cédric\n16 ans en seconde pro TNE"
         position="23.39771 5.28073 -7.51168"
@@ -87,6 +98,9 @@
       const dirLight = document.querySelector('#dirLight');
       const spotLight = document.querySelector('#spotLight');
       const flashLight = document.querySelector('#flashLight');
+
+      const popcorn = document.querySelector('#popcorn');
+      const popcornSound = document.querySelector('#popcornSound');
 
       let isPlaying = false;
 
@@ -163,6 +177,12 @@
           // Projecteur s’éteint instantanément
           flashLight.setAttribute('intensity', 0);
         }
+      });
+
+      // Événement click sur pop-corn pour jouer le son
+      popcorn.addEventListener('click', () => {
+        popcornSound.currentTime = 0;
+        popcornSound.play();
       });
     </script>
   </body>
