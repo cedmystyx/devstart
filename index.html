@@ -50,21 +50,13 @@
       <a-sky color="#000000"></a-sky>
 
       <!-- Salle -->
-      <a-entity id="salle" obj-model="mtl: ./cedmystyx/unaatitled.mtl; obj: ./cedmystyx/unaatitled.obj" position="3.64356 -2.10223 4.14092" rotation="0 90.049 0" shadow=""></a-entity>
-
+      <a-entity id="salle" obj-model="mtl: ./cedmystyx/unaatitled.mtl; obj: ./cedmystyx/unaatitled.obj" position="3.64356 -3.16867 4.14092" rotation="0 90.049 0" shadow=""></a-entity>
+      
       <!-- Plan blanc derrière vidéo -->
       <a-plane id="whiteScreen" position="-2.86159 11.27198 -23.33286" rotation="0 0.1398 0" width="4" height="2.25" color="#FFFFFF" material="shader: flat" shadow="" scale="10.58765 10.97542 18.33661"></a-plane>
       
       <!-- Écran vidéo (devant le plan blanc) -->
-      <a-plane id="screen"
-        position="-3.91995 11.27198 -23.25"
-        rotation="0 0.1398 0"
-        width="4"
-        height="2.25"
-        visible="true"
-        material="shader: flat; src: #videoTexture; transparent: true; opacity: 0"
-        shadow
-        scale="10.58765 10.97542 18.33661">
+      <a-plane id="screen" position="-2.69556 11.27198 -23.25" rotation="0 0.1398 0" width="4" height="2.25" material="opacity: 0; shader: flat; transparent: true; src: #videoTexture" shadow="" scale="10.58765 10.97542 18.33661">
       </a-plane>
 
       <!-- Cube blanc pour voir éclairage projecteur -->
@@ -84,16 +76,16 @@
       <!-- Personnages spectateurs assis avec modèles 3D -->
 
 <!-- Rangée 1 -->
-<a-entity obj-model="mtl: homme/boySitting.mtl; obj: homme/boySitting.obj" position="-3.78591 -1.67389 4.77373" rotation="0 180 0" scale="0.033 0.033 0.033" shadow=""></a-entity>
+<a-entity obj-model="mtl: homme/boySitting.mtl; obj: homme/boySitting.obj" position="-3.78591 -2.77738 4.77373" rotation="0 180 0" scale="0.033 0.033 0.033" shadow=""></a-entity>
 
-<a-entity obj-model="mtl: femme/girlSittingTable.mtl; obj: femme/girlSittingTable.obj" position="8.52828 4.45592 21.32309" rotation="0 180 0" scale="0.033 0.033 0.033" shadow=""></a-entity>
+<a-entity obj-model="mtl: femme/girlSittingTable.mtl; obj: femme/girlSittingTable.obj" position="6.9968 2.98302 21.32309" rotation="0 180 0" scale="0.033 0.033 0.033" shadow=""></a-entity>
 
-<a-entity obj-model="mtl: fille/sitFemale03.mtl; obj: fille/sitFemale03.obj" position="-4.30453 1.79953 16.43015" rotation="0 180 0" scale="0.033 0.033 0.033" shadow=""></a-entity>
+<a-entity obj-model="mtl: fille/sitFemale03.mtl; obj: fille/sitFemale03.obj" position="-4.30453 0.98988 16.43015" rotation="0 180 0" scale="0.033 0.033 0.033" shadow=""></a-entity>
 
 <!-- Rangée 2 -->
-<a-entity obj-model="mtl: chien/sitMale02.mtl; obj: chien/sitMale02.obj" position="-0.44694 7.71256 35.95138" rotation="0 180 0" scale="0.03 0.03 0.03" shadow=""></a-entity>
+<a-entity obj-model="mtl: chien/sitMale02.mtl; obj: chien/sitMale02.obj" position="-0.44694 5.6318 35.95138" rotation="0 180 0" scale="0.03 0.03 0.03" shadow=""></a-entity>
 
-<a-entity obj-model="mtl: garçon/sitMale01.mtl; obj: garçon/sitMale01.obj" position="-21.1121 5.5976 28.25279" rotation="0 180 0" scale="0.033 0.033 0.033" shadow=""></a-entity>
+<a-entity obj-model="mtl: garçon/sitMale01.mtl; obj: garçon/sitMale01.obj" position="-21.1121 4.49421 28.25279" rotation="0 180 0" scale="0.033 0.033 0.033" shadow=""></a-entity>
 
     </a-scene>
 
