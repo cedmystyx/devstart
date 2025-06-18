@@ -4,22 +4,66 @@
     <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
   </head>
   <body>
-    <a-scene>
+    <a-scene shadow="type:pcfsoft">
 
-      <!-- Lumières -->
-      <a-light type="ambient" color="#ffffff" intensity="0.3"></a-light>
-      <a-light type="directional" color="#ffffff" intensity="0.6" position="0 10 0" rotation="-90 0 0" castShadow="true"></a-light>
-      <a-light type="spot" color="#ffd580" intensity="1" position="0 8 -5" rotation="-60 0 0" angle="30" penumbra="0.5" castShadow="true"></a-light>
+      <!-- Lumière ambiante : lumière indirecte bleutée, faible -->
+      <a-light type="ambient" color="#a0c8ff" intensity="0.2"></a-light>
 
-      <!-- Caméra : regarde autour, mais ne bouge pas -->
+      <!-- Lumière directionnelle principale (simule soleil ou lampe puissante) -->
+      <a-light 
+        type="directional" 
+        color="#ffffff" 
+        intensity="0.8" 
+        position="5 10 5" 
+        rotation="-45 45 0" 
+        castShadow="true"
+        shadow-mapSize-width="2048" 
+        shadow-mapSize-height="2048"
+        shadow-camera-left="-10" 
+        shadow-camera-right="10" 
+        shadow-camera-bottom="-10" 
+        shadow-camera-top="10">
+      </a-light>
+
+      <!-- Spotlight chaud pour effet localisé (genre projecteur sur écran) -->
+      <a-light 
+        type="spot" 
+        color="#ffdca0" 
+        intensity="0.6" 
+        position="0 8 0" 
+        rotation="-90 0 0" 
+        angle="30" 
+        penumbra="0.7" 
+        distance="15" 
+        decay="2"
+        castShadow="true">
+      </a-light>
+
+      <!-- Lumière ponctuelle douce au sol (simule lumière rebondie) -->
+      <a-light 
+        type="point" 
+        color="#ffefcc" 
+        intensity="0.3" 
+        position="0 1 2" 
+        distance="5" 
+        decay="2">
+      </a-light>
+
+      <!-- Caméra : regarde autour, fixe en position -->
       <a-entity camera look-controls position="0 1.6 5"></a-entity>
 
       <!-- Ciel -->
       <a-sky color="#000000"></a-sky>
 
       <!-- Modèle salle -->
-      <a-entity id="salle" obj-model="mtl: ./cedmystyx/unaatitled.mtl; obj: ./cedmystyx/unaatitled.obj" position="0 -2.10223 2.42042">
+      <a-entity id="salle" 
+        obj-model="mtl: ./cedmystyx/unaatitled.mtl; obj: ./cedmystyx/unaatitled.obj" 
+        position="0 -2.10223 2.42042" 
+        rotation="0 0 0" 
+        scale="1 1 1" 
+        shadow="receive: true">
       </a-entity>
+
     </a-scene>
   </body>
 </html>
