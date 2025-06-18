@@ -17,56 +17,32 @@
   <body>
     <button id="playBtn">▶️ Lancer la vidéo</button>
 
-    <!-- Vidéo locale (avec son) -->
     <video id="videoTexture" src="./peppa/peppa.mp4" crossorigin="anonymous" playsinline style="display: none;"></video>
 
     <a-scene shadow="type:pcfsoft">
 
-      <!-- Lumières avec ID -->
+      <!-- Lumières -->
       <a-light id="ambLight" type="ambient" color="#a0c8ff" intensity="0.8"></a-light>
-      <a-light id="dirLight"
-        type="directional" 
-        color="#ffffff" 
-        intensity="1" 
-        position="-0.9 5 4.1" 
-        rotation="-45 0 0"
-        castShadow="true">
-      </a-light>
-      <a-light id="spotLight"
-        type="spot" 
-        color="#ffdca0" 
-        intensity="0.8" 
-        position="-0.9 4 4.1" 
-        rotation="-90 0 0" 
-        angle="40" 
-        penumbra="0.8" 
-        distance="10" 
-        decay="2"
-        castShadow="true">
-      </a-light>
+      <a-light id="dirLight" type="directional" color="#ffffff" intensity="1" position="-0.9 5 4.1" rotation="-45 0 0" castShadow="true"></a-light>
+      <a-light id="spotLight" type="spot" color="#ffdca0" intensity="0.8" position="-0.9 4 4.1" rotation="-90 0 0" angle="40" penumbra="0.8" distance="10" decay="2" castShadow="true"></a-light>
 
       <!-- Caméra -->
       <a-entity camera look-controls position="0 1.6 5" rotation="0 -90 0"></a-entity>
 
-      <!-- Ciel noir -->
+      <!-- Ciel -->
       <a-sky color="#000000"></a-sky>
 
       <!-- Salle -->
-      <a-entity id="salle"
-        obj-model="mtl: ./cedmystyx/unaatitled.mtl; obj: ./cedmystyx/unaatitled.obj"
-        position="-0.9397 -2.10223 4.14092"
-        rotation="0 90.049 0"
-        shadow="receive: true; cast: true">
-      </a-entity>
+      <a-entity id="salle" obj-model="mtl: ./cedmystyx/unaatitled.mtl; obj: ./cedmystyx/unaatitled.obj" position="-0.9397 -2.10223 4.14092" rotation="0 90.049 0" shadow="receive: true; cast: true"></a-entity>
 
-      <!-- Écran vidéo -->
+      <!-- Écran vidéo avec opacité 0 au départ -->
       <a-plane id="screen"
         position="-3.91995 11.27198 -23.25912"
         rotation="0 0.1398 0"
         width="4"
         height="2.25"
-        visible="false"
-        material="shader: flat; src: #videoTexture"
+        visible="true"
+        material="shader: flat; src: #videoTexture; transparent: true; opacity: 0"
         shadow
         scale="10.58765 10.97542 18.33661">
       </a-plane>
@@ -110,13 +86,27 @@
         }, 10);
       }
 
+      function fadeInScreen(duration = 1000) {
+        let opacity = 0;
+        const step = 1 / (duration / 10);
+        const interval = setInterval(() => {
+          opacity += step;
+          if (opacity >= 1) {
+            screen.setAttribute('material', 'opacity', 1);
+            clearInterval(interval);
+          } else {
+            screen.setAttribute('material', 'opacity', opacity.toFixed(2));
+          }
+        }, 10);
+      }
+
       playBtn.addEventListener('click', () => {
         if (!isPlaying) {
           video.play().then(() => {
             isPlaying = true;
             playBtn.textContent = "⏹️ Stopper la vidéo";
-            screen.setAttribute('visible', true);
 
+            fadeInScreen(); // Écran s'allume progressivement
             animateLight(ambLight, 0.8, 0.1);
             animateLight(dirLight, 1, 0.2);
             animateLight(spotLight, 0.8, 0.1);
@@ -127,8 +117,8 @@
           video.pause();
           isPlaying = false;
           playBtn.textContent = "▶️ Lancer la vidéo";
-          screen.setAttribute('visible', false);
 
+          screen.setAttribute('material', 'opacity', 0); // Disparition instantanée
           animateLight(ambLight, 0.1, 0.8);
           animateLight(dirLight, 0.2, 1);
           animateLight(spotLight, 0.1, 0.8);
