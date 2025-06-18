@@ -1,0 +1,12 @@
+# Matériaux
+newmtl Wall
+Ka 1.000 1.000 1.000
+Kd 0.800 0.800 0.800
+Ks 0.000 0.000 0.000
+map_Kd wall_texture.jpg
+
+newmtl Seat
+Ka 1.000 0.000 0.000
+Kd 0.800 0.000 0.000
+Ks 0.000 0.000 0.000
+map_Kd seat_texture.jpg
