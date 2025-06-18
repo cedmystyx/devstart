@@ -25,6 +25,9 @@
       <a-light id="ambLight" type="ambient" color="#a0c8ff" intensity="0.8"></a-light>
       <a-light id="dirLight" type="directional" color="#ffffff" intensity="1" position="-0.9 5 4.1" rotation="-45 0 0" castShadow="true"></a-light>
       <a-light id="spotLight" type="spot" color="#ffdca0" intensity="0.8" position="-0.9 4 4.1" rotation="-90 0 0" angle="40" penumbra="0.8" distance="10" decay="2" castShadow="true"></a-light>
+      
+      <!-- Lumière projecteur (flash) -->
+      <a-light id="flashLight" type="spot" color="#ffffff" intensity="0" position="-3.91995 12 -22" rotation="-90 0 0" angle="30" penumbra="1" distance="15" decay="1" castShadow="true"></a-light>
 
       <!-- Caméra -->
       <a-entity camera look-controls position="0 1.6 5" rotation="0 -90 0"></a-entity>
@@ -36,8 +39,7 @@
       <a-entity id="salle" obj-model="mtl: ./cedmystyx/unaatitled.mtl; obj: ./cedmystyx/unaatitled.obj" position="-0.9397 -2.10223 4.14092" rotation="0 90.049 0" shadow="receive: true; cast: true"></a-entity>
 
       <!-- Plan blanc derrière vidéo -->
-      <a-plane id="whiteScreen" position="-3.91995 11.27198 -23.33286" rotation="0 0.1398 0" width="4" height="2.25" color="#FFFFFF" material="shader: flat" shadow="" scale="10.58765 10.97542 18.33661">
-      </a-plane>
+      <a-plane id="whiteScreen" position="-3.91995 11.27198 -23.33286" rotation="0 0.1398 0" width="4" height="2.25" color="#FFFFFF" material="shader: flat" shadow="" scale="10.58765 10.97542 18.33661"></a-plane>
       
       <!-- Écran vidéo (devant le plan blanc) -->
       <a-plane id="screen"
@@ -73,6 +75,7 @@
       const ambLight = document.querySelector('#ambLight');
       const dirLight = document.querySelector('#dirLight');
       const spotLight = document.querySelector('#spotLight');
+      const flashLight = document.querySelector('#flashLight');
 
       let isPlaying = false;
 
@@ -111,9 +114,15 @@
             playBtn.textContent = "⏹️ Stopper la vidéo";
 
             fadeInScreen();
+
+            // Baisser les autres lumières
             animateLight(ambLight, 0.8, 0.1);
             animateLight(dirLight, 1, 0.2);
             animateLight(spotLight, 0.8, 0.1);
+
+            // Allumer progressivement la lumière projecteur
+            animateLight(flashLight, 0, 3);
+
           }).catch(err => {
             console.error("Erreur lecture vidéo :", err);
           });
@@ -122,10 +131,16 @@
           isPlaying = false;
           playBtn.textContent = "▶️ Lancer la vidéo";
 
+          // Cacher l'écran vidéo
           screen.setAttribute('material', 'opacity', 0);
+
+          // Remonter les autres lumières
           animateLight(ambLight, 0.1, 0.8);
           animateLight(dirLight, 0.2, 1);
           animateLight(spotLight, 0.1, 0.8);
+
+          // Éteindre nette la lumière projecteur
+          flashLight.setAttribute('intensity', 0);
         }
       });
     </script>
