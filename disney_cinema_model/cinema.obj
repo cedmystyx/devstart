@@ -1,18 +1,96 @@
-# Salle de cinéma Disney stylisée
+# Template Salle de Cinéma Disney
+
 mtllib cinema.mtl
-o SalleCinema
-v -5 0 -5
-v 5 0 -5
-v 5 0 5
-v -5 0 5
-v -5 5 -5
-v 5 5 -5
-v 5 5 5
-v -5 5 5
+o CinemaHall
+
+# ─────────── Sol ───────────
+usemtl Floor
+v  -10 0  -15
+v   10 0  -15
+v   10 0   15
+v  -10 0   15
+f  1 2 3 4
+
+# ─────────── Murs ───────────
 usemtl Wall
-f 1 2 6 5
-f 2 3 7 6
-f 3 4 8 7
-f 4 1 5 8
-f 5 6 7 8
-f 1 2 3 4
+v  -10 0  -15
+v  -10 8  -15
+v   10 8  -15
+v   10 0  -15
+f  5 6 7 8       # mur avant (écran ici)
+
+v  -10 0   15
+v  -10 8   15
+v   10 8   15
+v   10 0   15
+f  9 10 11 12     # mur arrière
+
+v  -10 0  -15
+v  -10 8  -15
+v  -10 8   15
+v  -10 0   15
+f  13 14 15 16    # mur gauche
+
+v   10 0  -15
+v   10 8  -15
+v   10 8   15
+v   10 0   15
+f  17 18 19 20    # mur droit
+
+# ─────────── Plafond ───────────
+usemtl Ceiling
+v  -10 8  -15
+v   10 8  -15
+v   10 8   15
+v  -10 8   15
+f  21 22 23 24
+
+# ─────────── Écran ───────────
+usemtl Screen
+v  -4 2  -14.9
+v   4 2  -14.9
+v   4 6  -14.9
+v  -4 6  -14.9
+f  25 26 27 28
+
+# ─────────── Statues Mickey ───────────
+# Placeholder pour importer ton mickey.obj
+o Statue_Left
+# Ici tu copieras toutes les lignes de ton mickey_converted.obj
+# avec une translation x = -6, y = 0, z = -14.5 pour bien le placer à gauche
+
+o Statue_Right
+# Même chose, avec translation x = +6, y = 0, z = -14.5
+
+# ─────────── Gradins & Escalier ───────────
+usemtl Seat
+# Premier gradin (bas)
+v  -8 0.5   8
+v   8 0.5   8
+v   8 1.5   6
+v  -8 1.5   6
+f  29 30 31 32
+
+# Escalier central
+usemtl Stair
+v  -1 0.5   3
+v   1 0.5   3
+v   1 1.5   1
+v  -1 1.5   1
+f  33 34 35 36
+
+# Deuxième gradin (milieu)
+usemtl Seat
+v  -8 1.5   4
+v   8 1.5   4
+v   8 2.5   2
+v  -8 2.5   2
+f  37 38 39 40
+
+# Troisième gradin (haut)
+usemtl Seat
+v  -8 2.5  0
+v   8 2.5  0
+v   8 3.5  -2
+v  -8 3.5  -2
+f  41 42 43 44
