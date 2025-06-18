@@ -1,12 +1,31 @@
-# Matériaux
+# cinema.mtl
+
+newmtl Floor
+  Ka 0.0 0.0 0.1
+  Kd 0.1 0.1 0.4
+  map_Kd floor_texture.jpg
+
 newmtl Wall
-Ka 1.000 1.000 1.000
-Kd 0.800 0.800 0.800
-Ks 0.000 0.000 0.000
-map_Kd wall_texture.jpg
+  Ka 0.2 0.2 0.5
+  Kd 0.3 0.3 0.7
+  map_Kd wall_texture.jpg
+
+newmtl Ceiling
+  Ka 0.1 0.1 0.1
+  Kd 0.2 0.2 0.2
+
+newmtl Screen
+  Ka 1.0 1.0 1.0
+  Kd 1.0 1.0 1.0
+  map_Kd screen_texture.jpg
 
 newmtl Seat
-Ka 1.000 0.000 0.000
-Kd 0.800 0.000 0.000
-Ks 0.000 0.000 0.000
-map_Kd seat_texture.jpg
+  Ka 0.5 0.0 0.0
+  Kd 0.7 0.0 0.0
+  map_Kd seat_texture.jpg
+
+newmtl Stair
+  Ka 0.3 0.3 0.3
+  Kd 0.5 0.5 0.5
+
+# Statue Mickey utilisera le matériau défini dans ton fichier mickey_converted.mtl
