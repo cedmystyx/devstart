@@ -22,9 +22,8 @@
 
     <a-scene shadow="type:pcfsoft">
 
-      <!-- Lumières corrigées et centrées sur le modèle -->
+      <!-- Lumières -->
       <a-light type="ambient" color="#a0c8ff" intensity="0.4"></a-light>
-
       <a-light 
         type="directional" 
         color="#ffffff" 
@@ -39,7 +38,6 @@
         shadow-camera-bottom="-10" 
         shadow-camera-top="10">
       </a-light>
-
       <a-light 
         type="spot" 
         color="#ffdca0" 
@@ -52,7 +50,6 @@
         decay="2"
         castShadow="true">
       </a-light>
-
       <a-light 
         type="point" 
         color="#ffefcc" 
@@ -85,6 +82,17 @@
                shadow 
                scale="10.58765 10.97542 18.33661">
       </a-plane>
+
+      <!-- TEXTE AJOUTÉ -->
+      <a-text 
+        value="Willigsecker Miot Cédric\n16 ans en seconde pro TNE" 
+        position="0 3 -2" 
+        align="center" 
+        width="6" 
+        color="#FFD700" 
+        wrap-count="30" 
+        font="https://cdn.aframe.io/fonts/mozillavr.fnt">
+      </a-text>
 
     </a-scene>
 
