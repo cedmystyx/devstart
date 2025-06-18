@@ -69,11 +69,14 @@
       <a-box position="-4.58569 34.51662 65.61611" depth="0.2" height="1" width="1" color="#FFFFFF" shadow=""></a-box>
 
       <!-- Pop-corn (cube stylisé) -->
-      <a-box id="popcorn" position="0 1 -3" depth="0.3" height="0.4" width="0.4" color="#f5d76e" 
-        class="clickable" 
-        shadow
-        cursor-listener>
-      </a-box>
+      <a-entity id="popcorn"
+  obj-model="obj: url(./source/popcorn/popcorn.obj); mtl: url(./source/popcorn/popcorn.mtl)"
+  position="0 1 -3"
+  scale="0.5 0.5 0.5"
+  shadow="cast: true; receive: false"
+  class="clickable"
+  cursor-listener>
+</a-entity>
 
       <!-- Texte -->
       <a-text value="Willigsecker Miot Cédric\n16 ans en seconde pro TNE"
