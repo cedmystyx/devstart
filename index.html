@@ -4,12 +4,13 @@
     <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
   </head>
   <body>
+    <!-- Ta vidéo locale (bien nommée et dans le bon dossier) -->
+    <video id="videoTexture" src="./video/maVideo.mp4" autoplay loop muted playsinline style="display:none"></video>
+
     <a-scene shadow="type:pcfsoft">
 
-      <!-- Lumière ambiante : lumière indirecte bleutée, faible -->
+      <!-- Lumières (comme dans ton code) -->
       <a-light type="ambient" color="#a0c8ff" intensity="0.2"></a-light>
-
-      <!-- Lumière directionnelle principale (simule soleil ou lampe puissante) -->
       <a-light 
         type="directional" 
         color="#ffffff" 
@@ -24,8 +25,6 @@
         shadow-camera-bottom="-10" 
         shadow-camera-top="10">
       </a-light>
-
-      <!-- Spotlight chaud pour effet localisé (genre projecteur sur écran) -->
       <a-light 
         type="spot" 
         color="#ffdca0" 
@@ -38,8 +37,6 @@
         decay="2"
         castShadow="true">
       </a-light>
-
-      <!-- Lumière ponctuelle douce au sol (simule lumière rebondie) -->
       <a-light 
         type="point" 
         color="#ffefcc" 
@@ -49,13 +46,13 @@
         decay="2">
       </a-light>
 
-      <!-- Caméra : regarde autour, fixe en position -->
+      <!-- Caméra -->
       <a-entity camera look-controls position="0 1.6 5"></a-entity>
 
       <!-- Ciel -->
       <a-sky color="#000000"></a-sky>
 
-      <!-- Modèle salle -->
+      <!-- Salle modèle -->
       <a-entity id="salle" 
         obj-model="mtl: ./cedmystyx/unaatitled.mtl; obj: ./cedmystyx/unaatitled.obj" 
         position="0 -2.10223 2.42042" 
@@ -63,6 +60,12 @@
         scale="1 1 1" 
         shadow="receive: true">
       </a-entity>
+
+      <!-- Plan avec la vidéo en texture -->
+      <a-plane position="0 2 -3" rotation="0 0 0" width="4" height="2.25" 
+               material="shader: flat; src: #videoTexture" 
+               shadow="cast: true">
+      </a-plane>
 
     </a-scene>
   </body>
