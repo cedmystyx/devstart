@@ -39,7 +39,7 @@
       <a-light id="spotLight" type="spot" color="#ffdca0" intensity="0.8" position="-0.9 4 4.1" rotation="-90 0 0" angle="40" penumbra="0.8" distance="10" decay="2" castShadow="true"></a-light>
 
       <!-- Projecteur blanc (spot) qui éclaire l'écran -->
-      <a-light id="flashLight" type="spot" color="#ffffff" intensity="0" position="-5.27845 34.61113 64.29208" rotation="-15 179 0" angle="45" penumbra="1" distance="120" decay="2" castShadow="true"></a-light>
+      <a-light id="flashLight" type="spot" color="#ffffff" intensity="0" position="-0.38153 34.39436 65.10757" rotation="-14.999999999999998 179 0" angle="45" penumbra="1" distance="120" decay="2" castshadow="true"></a-light>
       
       <!-- Caméra avec curseur -->
       <a-entity camera look-controls position="0 1.6 5" rotation="0 -90 0">
@@ -50,10 +50,10 @@
       <a-sky color="#000000"></a-sky>
 
       <!-- Salle -->
-      <a-entity id="salle" obj-model="mtl: ./cedmystyx/unaatitled.mtl; obj: ./cedmystyx/unaatitled.obj" position="-0.9397 -2.10223 4.14092" rotation="0 90.049 0" shadow="receive: true; cast: true"></a-entity>
+      <a-entity id="salle" obj-model="mtl: ./cedmystyx/unaatitled.mtl; obj: ./cedmystyx/unaatitled.obj" position="3.64356 -2.10223 4.14092" rotation="0 90.049 0" shadow=""></a-entity>
 
       <!-- Plan blanc derrière vidéo -->
-      <a-plane id="whiteScreen" position="-3.91995 11.27198 -23.33286" rotation="0 0.1398 0" width="4" height="2.25" color="#FFFFFF" material="shader: flat" shadow scale="10.58765 10.97542 18.33661"></a-plane>
+      <a-plane id="whiteScreen" position="-2.86159 11.27198 -23.33286" rotation="0 0.1398 0" width="4" height="2.25" color="#FFFFFF" material="shader: flat" shadow="" scale="10.58765 10.97542 18.33661"></a-plane>
       
       <!-- Écran vidéo (devant le plan blanc) -->
       <a-plane id="screen"
@@ -68,24 +68,14 @@
       </a-plane>
 
       <!-- Cube blanc pour voir éclairage projecteur -->
-      <a-box position="-4.58569 34.51662 65.61611" depth="0.2" height="1" width="1" color="#FFFFFF" shadow=""></a-box>
-
+      <a-box position="-0.34071 34.51662 65.61611" depth="0.2" height="1" width="1" color="#FFFFFF" shadow=""></a-box>
+      
       <!-- Pop-corn (cube stylisé) -->
-      <a-entity id="popcorn" obj-model="mtl: ./source/pop/pop.mtl; obj: ./source/pop/pop.obj" 
-                position="-2.22243 1.66116 4.20469" scale="0.07 0.07 0.07" shadow="receive: false" 
-                class="clickable" rotation="-80.228 24.919 90">
+      <a-entity id="popcorn" obj-model="mtl: ./source/pop/pop.mtl; obj: ./source/pop/pop.obj" position="1.42452 0.22452 3.86661" scale="0.09 0.09 0.09" shadow="receive: false" class="clickable" rotation="-80.22800000000001 24.919 90">
       </a-entity>
-
+      
       <!-- Texte -->
-      <a-text value="Willigsecker Miot Cédric\n16 ans en seconde pro TNE"
-        position="23.39771 5.28073 -7.51168"
-        rotation="0 -90 0"
-        align="center"
-        width="6"
-        color="#FFD700"
-        wrap-count="30"
-        font="https://cdn.aframe.io/fonts/mozillavr.fnt"
-        scale="4 4 4">
+      <a-text value="Willigsecker Miot Cédric\n16 ans en seconde pro TNE" position="23.39771 5.28073 -7.52892" rotation="0 -90 0" align="center" width="6" color="#FFD700" wrap-count="30" font="https://cdn.aframe.io/fonts/mozillavr.fnt" scale="4 4 4">
       </a-text>
 
       <!-- Personnages spectateurs assis -->
@@ -94,16 +84,16 @@
       <!-- Personnages spectateurs assis avec modèles 3D -->
 
 <!-- Rangée 1 -->
-<a-entity obj-model="obj: homme/boySitting.obj; mtl: homme/boySitting.mtl" position="-3 0 -15" rotation="0 45 0" scale="0.5 0.5 0.5" shadow="cast: true; receive: true"></a-entity>
+<a-entity obj-model="mtl: homme/boySitting.mtl; obj: homme/boySitting.obj" position="-3.78591 -1.67389 4.77373" rotation="0 180 0" scale="0.033 0.033 0.033" shadow=""></a-entity>
 
-<a-entity obj-model="obj: garçon/sitMale01.obj; mtl: garçon/sitMale01.mtl" position="-2 0 -15.5" rotation="0 45 0" scale="0.5 0.5 0.5" shadow="cast: true; receive: true"></a-entity>
+<a-entity obj-model="mtl: femme/girlSittingTable.mtl; obj: femme/girlSittingTable.obj" position="8.52828 4.45592 21.32309" rotation="0 180 0" scale="0.033 0.033 0.033" shadow=""></a-entity>
 
-<a-entity obj-model="obj: fille/sitFemale03.obj; mtl: fille/sitFemale03.mtl" position="-1 0 -15.2" rotation="0 45 0" scale="0.5 0.5 0.5" shadow="cast: true; receive: true"></a-entity>
+<a-entity obj-model="mtl: fille/sitFemale03.mtl; obj: fille/sitFemale03.obj" position="-4.30453 1.79953 16.43015" rotation="0 180 0" scale="0.033 0.033 0.033" shadow=""></a-entity>
 
 <!-- Rangée 2 -->
-<a-entity obj-model="obj: femme/girlSittingTable.obj; mtl: femme/girlSittingTable.mtl" position="-2.5 0 -16.5" rotation="0 45 0" scale="0.5 0.5 0.5" shadow="cast: true; receive: true"></a-entity>
+<a-entity obj-model="mtl: chien/sitMale02.mtl; obj: chien/sitMale02.obj" position="-0.44694 7.71256 35.95138" rotation="0 180 0" scale="0.03 0.03 0.03" shadow=""></a-entity>
 
-<a-entity obj-model="obj: chien/sitMale02.obj; mtl: chien/sitMale02.mtl" position="-1.5 0 -16.8" rotation="0 45 0" scale="0.5 0.5 0.5" shadow="cast: true; receive: true"></a-entity>
+<a-entity obj-model="mtl: garçon/sitMale01.mtl; obj: garçon/sitMale01.obj" position="-21.1121 5.5976 28.25279" rotation="0 180 0" scale="0.033 0.033 0.033" shadow=""></a-entity>
 
     </a-scene>
 
