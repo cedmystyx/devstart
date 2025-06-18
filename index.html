@@ -39,10 +39,12 @@
       <a-light id="spotLight" type="spot" color="#ffdca0" intensity="0.8" position="-0.9 4 4.1" rotation="-90 0 0" angle="40" penumbra="0.8" distance="10" decay="2" castShadow="true"></a-light>
 
       <!-- Projecteur blanc (spot) qui éclaire l'écran -->
-      <a-light id="flashLight" type="spot" color="#ffffff" intensity="0" position="-5.27845 34.61113 64.29208" rotation="-15 179 0" angle="45" penumbra="1" distance="120" decay="2" castshadow="true"></a-light>
+      <a-light id="flashLight" type="spot" color="#ffffff" intensity="0" position="-5.27845 34.61113 64.29208" rotation="-15 179 0" angle="45" penumbra="1" distance="120" decay="2" castShadow="true"></a-light>
       
-      <!-- Caméra -->
-      <a-entity camera look-controls position="0 1.6 5" rotation="0 -90 0"></a-entity>
+      <!-- Caméra avec curseur -->
+      <a-entity camera look-controls position="0 1.6 5" rotation="0 -90 0">
+        <a-cursor color="white" fuse="false" raycaster="objects: .clickable"></a-cursor>
+      </a-entity>
 
       <!-- Ciel -->
       <a-sky color="#000000"></a-sky>
@@ -69,8 +71,10 @@
       <a-box position="-4.58569 34.51662 65.61611" depth="0.2" height="1" width="1" color="#FFFFFF" shadow=""></a-box>
 
       <!-- Pop-corn (cube stylisé) -->
-      <a-entity id="popcorn" obj-model="mtl: ./source/pop/pop.mtl; obj: ./source/pop/pop.obj" position="-2.22243 1.66116 4.20469" scale="0.07 0.07 0.07" shadow="receive: false" class="clickable" cursor-listener="" rotation="-80.22841526319353 24.919080425829762 90">
-</a-entity>
+      <a-entity id="popcorn" obj-model="mtl: ./source/pop/pop.mtl; obj: ./source/pop/pop.obj" 
+                position="-2.22243 1.66116 4.20469" scale="0.07 0.07 0.07" shadow="receive: false" 
+                class="clickable" rotation="-80.228 24.919 90">
+      </a-entity>
 
       <!-- Texte -->
       <a-text value="Willigsecker Miot Cédric\n16 ans en seconde pro TNE"
